@@ -2,21 +2,25 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StackParameters } from './types';
-import Home from '../screens/Home';
+import { ThemeProvider } from 'styled-components';
 import { useColorScheme } from 'react-native';
 import Theme from '../themes';
+import Home from '../screens/Home';
 
 const Stack = createStackNavigator<StackParameters>();
 
 const Routes = () => {
   const scheme = useColorScheme();
+  const theme = Theme[scheme ?? 'light'];
 
   return (
-    <NavigationContainer theme={Theme[scheme ?? 'light']}>
-      <Stack.Navigator initialRouteName={'Home'}>
-        <Stack.Screen name={'Home'} component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider theme={theme.colors}>
+      <NavigationContainer theme={theme}>
+        <Stack.Navigator initialRouteName={'Home'}>
+          <Stack.Screen name={'Home'} component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 

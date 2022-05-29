@@ -74,3 +74,16 @@ export interface Exercise {
   category: Category | null;
   instructions: string[];
 }
+
+export interface Plan {
+  name: string;
+  normalized_name: string;
+  workouts: Workout[];
+  active: boolean;
+}
+
+export interface Workout {
+  name: string;
+  normalized_name: string;
+  exercises: Exercise[];
+}

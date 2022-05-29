@@ -4,12 +4,19 @@ import { TabParameters } from './types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeTab from './HomeTab';
 import PlansTab from './PlansTab';
+import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 
 const Tab = createBottomTabNavigator<TabParameters>();
 
 const Home = () => {
   return (
-    <Tab.Navigator initialRouteName="HomeTab">
+    <Tab.Navigator
+      initialRouteName="HomeTab"
+      screenOptions={{
+        tabBarButton: (props) => (
+          <ButtonWithFeedback rippleRadius={40} {...props} />
+        ),
+      }}>
       <Tab.Screen
         name="HomeTab"
         component={HomeTab}

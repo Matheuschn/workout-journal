@@ -24,7 +24,11 @@ const WorkoutCard: React.FC<TouchableWithoutFeedbackProps & Props> = ({
 }) => {
   return (
     <MainContainer>
-      <MainButton rippleRadius={200} delayPressIn={100} {...props}>
+      <MainButton
+        rippleRadius={200}
+        delayPressIn={100}
+        delayPressOut={100}
+        {...props}>
         <IconContainer>
           <Icon name={icon} size={40} />
         </IconContainer>

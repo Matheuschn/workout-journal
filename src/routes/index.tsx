@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { useColorScheme } from 'react-native';
 import Theme from '../themes';
 import Home from '../screens/Home';
-import Config from '../screens/Config';
+import Settings from '../screens/Settings';
 
 const Stack = createStackNavigator<StackParameters>();
 
@@ -23,7 +23,7 @@ const Routes = () => {
             component={Home}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name={'Config'} component={Config} />
+          <Stack.Screen name={'Settings'} component={Settings} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

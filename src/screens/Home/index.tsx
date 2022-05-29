@@ -19,7 +19,7 @@ const Home = ({ navigation }: Props<StackParameters, 'HomeNavigator'>) => (
         <ButtonWithFeedback rippleRadius={40} {...props} />
       ),
       headerRight: () => (
-        <ConfigContainer onPress={() => navigation.navigate('Config', {})}>
+        <ConfigContainer onPress={() => navigation.navigate('Settings', {})}>
           <ConfigIcon name="cog" size={28} />
         </ConfigContainer>
       ),

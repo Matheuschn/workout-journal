@@ -1,4 +1,4 @@
 export type StackParameters = {
   HomeNavigator: {};
-  Config: {};
+  Settings: {};
 };

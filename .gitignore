@@ -62,3 +62,6 @@ buck-out/
 
 # Realm files
 *.realm*
+
+# exercises.json git submodule
+plugins/exercises.json

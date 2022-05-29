@@ -1,10 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
 import { StackScreenProps as Props } from '@react-navigation/stack';
 import { StackParameters } from '../../routes/types';
+import { HeaderText, MainContainer, TopContainer } from './styles';
+import BottomNavigation from '../../components/BottomNavigation';
 
 const Home = ({ navigation, route }: Props<StackParameters, 'Home'>) => {
-  return <View></View>;
+  return (
+    <TopContainer>
+      <MainContainer>
+        <HeaderText>My Plan</HeaderText>
+      </MainContainer>
+      <BottomNavigation />
+    </TopContainer>
+  );
 };
 
 export default Home;

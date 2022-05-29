@@ -18,7 +18,11 @@ const ButtonWithFeedback: React.FC<TouchableWithoutFeedbackProps & Props> = ({
 }) => {
   const theme = useTheme();
 
-  const ripple = TouchableNativeFeedback.Ripple(theme.text, true, rippleRadius);
+  const ripple = TouchableNativeFeedback.Ripple(
+    theme.border,
+    true,
+    rippleRadius,
+  );
 
   return (
     <TouchableNativeFeedback background={ripple} {...props}>

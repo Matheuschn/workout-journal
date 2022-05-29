@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StackScreenProps as Props } from '@react-navigation/stack';
-import { StackParameters } from '../../routes/types';
+import { BottomTabNavigationProp as Props } from '@react-navigation/bottom-tabs';
+import { TabParameters } from '../types';
 import { MainContainer, TopContainer } from './styles';
-import BottomNavigation from '../../components/BottomNavigation';
-import { Database } from '../../services/database';
+import { Database } from '../../../services/database';
 import { useIsFocused } from '@react-navigation/native';
-import { Plan } from '../../types';
+import { Plan } from '../../../types';
 
-const Plans = ({}: Props<StackParameters, 'Plans'>) => {
+const PlansTab = ({}: Props<TabParameters, 'PlansTab'>) => {
   const isFocused = useIsFocused();
   const [plans, setPlans] = useState<Plan[]>([]);
 
@@ -20,9 +19,8 @@ const Plans = ({}: Props<StackParameters, 'Plans'>) => {
   return (
     <TopContainer>
       <MainContainer />
-      <BottomNavigation />
     </TopContainer>
   );
 };
 
-export default Plans;
+export default PlansTab;

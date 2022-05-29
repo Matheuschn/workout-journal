@@ -1,39 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { StackScreenProps as Props } from '@react-navigation/stack';
-import { StackParameters } from '../../routes/types';
-import { HeaderText, MainContainer, TopContainer } from './styles';
-import BottomNavigation from '../../components/BottomNavigation';
-import { Database } from '../../services/database';
-import WorkoutCard from '../../components/WorkoutCard';
-import { useIsFocused } from '@react-navigation/native';
-import { Plan } from '../../types';
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { TabParameters } from './types';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import HomeTab from './HomeTab';
+import PlansTab from './PlansTab';
 
-const Home = ({}: Props<StackParameters, 'Home'>) => {
-  const isFocused = useIsFocused();
-  const [plan, setPlan] = useState<Plan | undefined>(undefined);
+const Tab = createBottomTabNavigator<TabParameters>();
 
-  useEffect(() => {
-    if (isFocused) {
-      setPlan(Database.getActivePlan());
-    }
-  }, [isFocused]);
-
+const Home = () => {
   return (
-    <TopContainer>
-      <MainContainer>
-        <HeaderText>My Plan</HeaderText>
-        {plan ? (
-          <></>
-        ) : (
-          <WorkoutCard
-            title="You don't have a plan yet!"
-            subtitle="Click here to create one."
-            icon="plus"
-          />
-        )}
-      </MainContainer>
-      <BottomNavigation />
-    </TopContainer>
+    <Tab.Navigator initialRouteName="HomeTab">
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="home" {...props} />,
+          title: 'Home',
+        }}
+      />
+      <Tab.Screen
+        name="HistoryTab"
+        component={PlansTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="history" {...props} />,
+          title: 'History',
+        }}
+      />
+      <Tab.Screen
+        name="PlansTab"
+        component={PlansTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="notebook" {...props} />,
+          title: 'Plans',
+        }}
+      />
+      <Tab.Screen
+        name="ProgressionTab"
+        component={PlansTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="poll" {...props} />,
+          title: 'Progression',
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

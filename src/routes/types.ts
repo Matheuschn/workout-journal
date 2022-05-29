@@ -1,4 +1,3 @@
 export type StackParameters = {
-  Home: {};
-  Plans: {};
+  HomeNavigator: {};
 };

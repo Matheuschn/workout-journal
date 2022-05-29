@@ -6,7 +6,6 @@ import { ThemeProvider } from 'styled-components';
 import { useColorScheme } from 'react-native';
 import Theme from '../themes';
 import Home from '../screens/Home';
-import Plans from '../screens/Plans';
 
 const Stack = createStackNavigator<StackParameters>();
 
@@ -17,12 +16,11 @@ const Routes = () => {
   return (
     <ThemeProvider theme={theme.colors}>
       <NavigationContainer theme={theme}>
-        <Stack.Navigator initialRouteName={'Home'}>
-          <Stack.Screen name={'Home'} component={Home} />
+        <Stack.Navigator initialRouteName={'HomeNavigator'}>
           <Stack.Screen
-            name={'Plans'}
-            component={Plans}
-            options={{ headerLeft: () => undefined }}
+            name={'HomeNavigator'}
+            component={Home}
+            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>

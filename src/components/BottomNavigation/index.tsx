@@ -1,47 +1,27 @@
 import React from 'react';
-import {
-  Button,
-  ButtonContainer,
-  ButtonText,
-  MainContainer,
-  Icon,
-} from './styles';
-import { TouchableNativeFeedback } from 'react-native';
-import { useTheme } from 'styled-components';
+import { Button, ButtonText, MainContainer, Icon } from './styles';
 
-const BottomNavigation = () => {
-  const theme = useTheme();
-
-  const ripple = TouchableNativeFeedback.Ripple(theme.text, true, 40);
-
+const BottomNavigation: React.FC = () => {
   return (
     <MainContainer>
-      <Button background={ripple}>
-        <ButtonContainer>
-          <Icon name="home" size={28} />
-          <ButtonText>Home</ButtonText>
-        </ButtonContainer>
+      <Button rippleRadius={40}>
+        <Icon name="home" size={28} />
+        <ButtonText>Home</ButtonText>
       </Button>
 
-      <Button background={ripple}>
-        <ButtonContainer>
-          <Icon name="history" size={28} />
-          <ButtonText>History</ButtonText>
-        </ButtonContainer>
+      <Button rippleRadius={40}>
+        <Icon name="history" size={28} />
+        <ButtonText>History</ButtonText>
       </Button>
 
-      <Button background={ripple}>
-        <ButtonContainer>
-          <Icon name="notebook" size={28} />
-          <ButtonText>Plans</ButtonText>
-        </ButtonContainer>
+      <Button rippleRadius={40}>
+        <Icon name="notebook" size={28} />
+        <ButtonText>Plans</ButtonText>
       </Button>
 
-      <Button background={ripple}>
-        <ButtonContainer>
-          <Icon name="poll" size={28} />
-          <ButtonText>Progression</ButtonText>
-        </ButtonContainer>
+      <Button rippleRadius={40}>
+        <Icon name="poll" size={28} />
+        <ButtonText>Progression</ButtonText>
       </Button>
     </MainContainer>
   );

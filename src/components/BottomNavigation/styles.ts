@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import VectorIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ButtonWithFeedback from '../ButtonWithFeedback';
 
 export const MainContainer = styled.View`
   height: 11%;
@@ -10,11 +11,8 @@ export const MainContainer = styled.View`
   align-items: center;
 `;
 
-export const Button = styled.TouchableNativeFeedback`
-  flex: 1;
-`;
 
-export const ButtonContainer = styled.View`
+export const Button = styled(ButtonWithFeedback)`
   flex: 1;
   align-items: center;
 `;

@@ -28,10 +28,16 @@ export const Icon = styled(VectorIcon)`
 
 export const InfoContainer = styled.View`
   flex: 1;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin-vertical: 5%;
 `;
 
 export const TitleText = styled.Text`
   color: ${({ theme }) => theme.text};
   font-size: 20px;
+`;
+
+export const SubtitleText = styled.Text`
+  color: ${({ theme }) => theme.primary};
+  font-size: 14px;
 `;

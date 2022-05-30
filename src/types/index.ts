@@ -87,3 +87,25 @@ export interface Workout {
   normalized_name: string;
   exercises: Exercise[];
 }
+
+export enum ThemeName {
+  LIGHT = 'light',
+  DARK = 'dark',
+  AUTO = 'auto',
+}
+
+export enum Units {
+  IMPERIAL = 'imperial',
+  METRIC = 'metric',
+}
+
+export enum Language {
+  ENGLISH = 'english',
+}
+
+export interface Preferences {
+  id: Realm.BSON.UUID;
+  language: Language;
+  theme: ThemeName;
+  units: Units;
+}

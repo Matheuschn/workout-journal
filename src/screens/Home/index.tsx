@@ -11,6 +11,8 @@ import { StackParameters, StackScreens } from '../../routes/types';
 import { translate } from '../../services/translation';
 import { Database } from '../../services/database';
 import { PreferencesSchema } from '../../services/database/schemas/preferences';
+import HistoryTab from './HistoryTab';
+import StatisticsTab from './StatisticsTab';
 
 const Tab = createBottomTabNavigator<TabParameters>();
 
@@ -45,7 +47,7 @@ const Home = ({
       />
       <Tab.Screen
         name={TabScreens.HISTORY_TAB}
-        component={PlansTab}
+        component={HistoryTab}
         options={{
           tabBarIcon: (props) => <Icon name="history" {...props} />,
           title: translate(`screens.${TabScreens.HISTORY_TAB}`),
@@ -61,7 +63,7 @@ const Home = ({
       />
       <Tab.Screen
         name={TabScreens.STATISTICS_TAB}
-        component={PlansTab}
+        component={StatisticsTab}
         options={{
           tabBarIcon: (props) => <Icon name="poll" {...props} />,
           title: translate(`screens.${TabScreens.STATISTICS_TAB}`),

@@ -1,4 +1,9 @@
+export enum StackScreens {
+  HOME_NAVIGATOR = 'HomeNavigator',
+  SETTINGS = 'Settings',
+}
+
 export type StackParameters = {
-  HomeNavigator: {};
-  Settings: {};
+  [StackScreens.HOME_NAVIGATOR]: {};
+  [StackScreens.SETTINGS]: {};
 };

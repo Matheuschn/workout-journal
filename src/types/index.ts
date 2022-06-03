@@ -1,3 +1,5 @@
+import { Language } from '../services/translation/languages';
+
 export enum Muscle {
   abdominals = 'abdominals',
   hamstrings = 'hamstrings',
@@ -97,10 +99,6 @@ export enum ThemeName {
 export enum Units {
   IMPERIAL = 'imperial',
   METRIC = 'metric',
-}
-
-export enum Language {
-  ENGLISH = 'english',
 }
 
 export interface Preferences {

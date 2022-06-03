@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StackParameters } from './types';
+import { StackScreens, StackParameters } from './types';
 import { ThemeProvider } from 'styled-components';
 import { useColorScheme } from 'react-native';
 import Theme from '../themes';
@@ -9,18 +9,21 @@ import Home from '../screens/Home';
 import Settings from '../screens/Settings';
 import { Database } from '../services/database';
 import { Preferences, ThemeName } from '../types';
+import { setLocale, translate } from '../services/translation';
+import { PreferencesSchema } from '../services/database/schemas/preferences';
 
 const Stack = createStackNavigator<StackParameters>();
+const { useObject } = Database.context;
 
 const Routes = () => {
   const systemThemeName = useColorScheme();
-  const [preferences, setPreferences] = useState<Preferences>(
-    Database.getPreferences(),
-  );
 
-  useEffect(() => {
-    Database.addPreferencesListener((obj) => setPreferences(obj.toJSON()));
-  }, []);
+  const preferences: Preferences = useObject(
+    PreferencesSchema.name,
+    Database.getPreferences().id,
+  )?.toJSON();
+
+  setLocale(preferences.language);
 
   let currentTheme;
   if (preferences.theme === ThemeName.AUTO) {
@@ -32,13 +35,19 @@ const Routes = () => {
   return (
     <ThemeProvider theme={currentTheme.colors}>
       <NavigationContainer theme={currentTheme}>
-        <Stack.Navigator initialRouteName={'HomeNavigator'}>
+        <Stack.Navigator initialRouteName={StackScreens.HOME_NAVIGATOR}>
           <Stack.Screen
-            name={'HomeNavigator'}
+            name={StackScreens.HOME_NAVIGATOR}
             component={Home}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name={'Settings'} component={Settings} />
+          <Stack.Screen
+            name={StackScreens.SETTINGS}
+            component={Settings}
+            options={{
+              title: translate(`screens.${StackScreens.SETTINGS}`),
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

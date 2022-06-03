@@ -1,61 +1,73 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { TabParameters } from './types';
+import { TabParameters, TabScreens } from './types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeTab from './HomeTab';
 import PlansTab from './PlansTab';
 import ButtonWithFeedback from '../../components/ButtonWithFeedback';
 import { ConfigContainer, ConfigIcon } from './styles';
 import { StackScreenProps as Props } from '@react-navigation/stack';
-import { StackParameters } from '../../routes/types';
+import { StackParameters, StackScreens } from '../../routes/types';
+import { translate } from '../../services/translation';
+import { Database } from '../../services/database';
+import { PreferencesSchema } from '../../services/database/schemas/preferences';
 
 const Tab = createBottomTabNavigator<TabParameters>();
 
-const Home = ({ navigation }: Props<StackParameters, 'HomeNavigator'>) => (
-  <Tab.Navigator
-    initialRouteName="HomeTab"
-    screenOptions={{
-      tabBarButton: (props) => (
-        <ButtonWithFeedback rippleRadius={40} {...props} />
-      ),
-      headerRight: () => (
-        <ConfigContainer onPress={() => navigation.navigate('Settings', {})}>
-          <ConfigIcon name="cog" size={28} />
-        </ConfigContainer>
-      ),
-    }}>
-    <Tab.Screen
-      name="HomeTab"
-      component={HomeTab}
-      options={{
-        tabBarIcon: (props) => <Icon name="home" {...props} />,
-        title: 'Home',
-      }}
-    />
-    <Tab.Screen
-      name="HistoryTab"
-      component={PlansTab}
-      options={{
-        tabBarIcon: (props) => <Icon name="history" {...props} />,
-        title: 'History',
-      }}
-    />
-    <Tab.Screen
-      name="PlansTab"
-      component={PlansTab}
-      options={{
-        tabBarIcon: (props) => <Icon name="notebook" {...props} />,
-        title: 'Plans',
-      }}
-    />
-    <Tab.Screen
-      name="ProgressionTab"
-      component={PlansTab}
-      options={{
-        tabBarIcon: (props) => <Icon name="poll" {...props} />,
-        title: 'Progression',
-      }}
-    />
-  </Tab.Navigator>
-);
+const { useObject } = Database.context;
+
+const Home = ({
+  navigation,
+}: Props<StackParameters, StackScreens.HOME_NAVIGATOR>) => {
+  useObject(PreferencesSchema.name, Database.getPreferences().id);
+
+  return (
+    <Tab.Navigator
+      initialRouteName={TabScreens.HOME_TAB}
+      screenOptions={{
+        tabBarButton: (props) => (
+          <ButtonWithFeedback rippleRadius={40} {...props} />
+        ),
+        headerRight: () => (
+          <ConfigContainer
+            onPress={() => navigation.navigate(StackScreens.SETTINGS, {})}>
+            <ConfigIcon name="cog" size={28} />
+          </ConfigContainer>
+        ),
+      }}>
+      <Tab.Screen
+        name={TabScreens.HOME_TAB}
+        component={HomeTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="home" {...props} />,
+          title: translate(`screens.${TabScreens.HOME_TAB}`),
+        }}
+      />
+      <Tab.Screen
+        name={TabScreens.HISTORY_TAB}
+        component={PlansTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="history" {...props} />,
+          title: translate(`screens.${TabScreens.HISTORY_TAB}`),
+        }}
+      />
+      <Tab.Screen
+        name={TabScreens.PLANS_TAB}
+        component={PlansTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="notebook" {...props} />,
+          title: translate(`screens.${TabScreens.PLANS_TAB}`),
+        }}
+      />
+      <Tab.Screen
+        name={TabScreens.STATISTICS_TAB}
+        component={PlansTab}
+        options={{
+          tabBarIcon: (props) => <Icon name="poll" {...props} />,
+          title: translate(`screens.${TabScreens.STATISTICS_TAB}`),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 export default Home;

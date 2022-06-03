@@ -1,33 +1,34 @@
 import 'react-native-get-random-values';
-import Realm from 'realm';
-import {
-  Exercise,
-  Language,
-  Plan,
-  Preferences,
-  ThemeName,
-  Units,
-} from '../../types';
+import { Realm, createRealmContext } from '@realm/react';
+import { Exercise, Plan, Preferences, ThemeName, Units } from '../../types';
 import SchemaArray from './schemas';
 import { ExerciseSchema } from './schemas/exercise';
 import { PlanSchema } from './schemas/plan';
 import { PreferencesSchema } from './schemas/preferences';
+import {
+  findBestAvailableLanguage,
+  usesMetricSystem,
+} from 'react-native-localize';
+import { languages } from '../translation/languages';
 
 Realm.copyBundledRealmFiles();
 
-const realm = new Realm({
+const realmConfig = {
   schema: SchemaArray,
-});
+};
+
+const realm = new Realm(realmConfig);
 
 const defaultPreferences: Preferences = {
   id: new Realm.BSON.UUID(),
-  language: Language.ENGLISH,
+  language:
+    findBestAvailableLanguage(languages.tags)?.languageTag || languages.default,
   theme: ThemeName.AUTO,
-  units: Units.METRIC,
+  units: usesMetricSystem() ? Units.METRIC : Units.IMPERIAL,
 };
 
 export const Database = {
-  instance: realm,
+  context: createRealmContext(realmConfig),
 
   getExercises: (): Exercise[] => realm.objects(ExerciseSchema.name).toJSON(),
 
@@ -56,7 +57,8 @@ export const Database = {
     return preferences;
   },
 
-  addPreferencesListener: (
-    listener: Realm.ObjectChangeCallback<Realm.Object>,
-  ) => realm.objects(PreferencesSchema.name)[0].addListener(listener),
+  addPreferencesListener: (listener: (preferences: Preferences) => void) =>
+    realm
+      .objects(PreferencesSchema.name)[0]
+      .addListener((obj) => listener(obj.toJSON())),
 };

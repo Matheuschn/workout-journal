@@ -6,8 +6,9 @@ import WorkoutCard from '../../../components/WorkoutCard';
 import { useIsFocused } from '@react-navigation/native';
 import { Plan } from '../../../types';
 import { translate } from '../../../services/translation';
+import { StackScreens } from '../../../routes/types';
 
-const HomeTab = ({}: TabProps<TabScreens.HOME_TAB>) => {
+const HomeTab = ({ navigation }: TabProps<TabScreens.HOME_TAB>) => {
   const isFocused = useIsFocused();
   const [plan, setPlan] = useState<Plan | undefined>(undefined);
 
@@ -28,6 +29,7 @@ const HomeTab = ({}: TabProps<TabScreens.HOME_TAB>) => {
             title={translate('home.plans.card.title.no_plans')}
             subtitle={translate('home.plans.card.subtitle.no_plans')}
             icon="plus"
+            onPress={() => navigation.navigate(StackScreens.ADD_PLAN, {})}
           />
         )}
       </MainContainer>

@@ -13,6 +13,7 @@ export default {
     [TabScreens.PLANS_TAB]: 'Planos',
     [TabScreens.STATISTICS_TAB]: 'Estatísticas',
     [StackScreens.SETTINGS]: 'Configurações',
+    [StackScreens.ADD_PLAN]: 'Adicionar plano',
   },
   preferences,
   home,

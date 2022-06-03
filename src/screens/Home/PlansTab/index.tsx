@@ -6,8 +6,9 @@ import { useIsFocused } from '@react-navigation/native';
 import { Plan } from '../../../types';
 import { translate } from '../../../services/translation';
 import PlusButton from '../../../components/PlusButton';
+import { StackScreens } from '../../../routes/types';
 
-const PlansTab = ({}: TabProps<TabScreens.PLANS_TAB>) => {
+const PlansTab = ({ navigation }: TabProps<TabScreens.PLANS_TAB>) => {
   const isFocused = useIsFocused();
   const [plans, setPlans] = useState<Plan[]>([]);
 
@@ -27,7 +28,9 @@ const PlansTab = ({}: TabProps<TabScreens.PLANS_TAB>) => {
           <HelperText>{translate('plans.custom_plans.no_plans')}</HelperText>
         )}
       </MainContainer>
-      <PlusButton />
+      <PlusButton
+        onPress={() => navigation.navigate(StackScreens.ADD_PLAN, {})}
+      />
     </TopContainer>
   );
 };

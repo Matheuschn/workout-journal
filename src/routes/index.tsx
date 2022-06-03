@@ -11,6 +11,7 @@ import { Database } from '../services/database';
 import { Preferences, ThemeName } from '../types';
 import { setLocale, translate } from '../services/translation';
 import { PreferencesSchema } from '../services/database/schemas/preferences';
+import AddPlan from '../screens/AddPlan';
 
 const Stack = createStackNavigator<StackParameters>();
 const { useObject } = Database.context;
@@ -46,6 +47,13 @@ const Routes = () => {
             component={Settings}
             options={{
               title: translate(`screens.${StackScreens.SETTINGS}`),
+            }}
+          />
+          <Stack.Screen
+            name={StackScreens.ADD_PLAN}
+            component={AddPlan}
+            options={{
+              title: translate(`screens.${StackScreens.ADD_PLAN}`),
             }}
           />
         </Stack.Navigator>

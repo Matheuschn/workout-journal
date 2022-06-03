@@ -3,6 +3,7 @@ import { TabScreens } from '../../../../screens/Home/types';
 import settings from './settings';
 import preferences from './preferences';
 import home from './home';
+import plans from './plans';
 
 export default {
   name: 'English',
@@ -15,5 +16,6 @@ export default {
   },
   preferences,
   home,
+  plans,
   settings,
 };

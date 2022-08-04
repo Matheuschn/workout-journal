@@ -8,18 +8,21 @@ import {
   Icon,
   TitleText,
   SubtitleText,
+  OptionsButton,
 } from './styles';
 
 interface Props {
   title: string;
+  showOptions?: boolean;
   subtitle?: string;
   icon?: string;
 }
 
-const WorkoutCard: React.FC<TouchableWithoutFeedbackProps & Props> = ({
+const Card: React.FC<TouchableWithoutFeedbackProps & Props> = ({
   title,
   subtitle,
-  icon = 'dumbbell',
+  icon,
+  showOptions = false,
   ...props
 }) => {
   return (
@@ -29,16 +32,23 @@ const WorkoutCard: React.FC<TouchableWithoutFeedbackProps & Props> = ({
         delayPressIn={100}
         delayPressOut={100}
         {...props}>
-        <IconContainer>
-          <Icon name={icon} size={40} />
-        </IconContainer>
+        {icon && (
+          <IconContainer>
+            <Icon name={icon} size={40} />
+          </IconContainer>
+        )}
         <InfoContainer>
           <TitleText>{title}</TitleText>
           {subtitle && <SubtitleText>{subtitle}</SubtitleText>}
         </InfoContainer>
+        {showOptions && (
+          <OptionsButton>
+            <Icon name="dots-vertical" size={30} />
+          </OptionsButton>
+        )}
       </MainButton>
     </MainContainer>
   );
 };
 
-export default WorkoutCard;
+export default Card;

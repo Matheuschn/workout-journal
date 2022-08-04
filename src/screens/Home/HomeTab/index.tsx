@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TabProps, TabScreens } from '../types';
 import { HeaderText, MainContainer, TopContainer } from './styles';
 import { Database } from '../../../services/database';
-import WorkoutCard from '../../../components/WorkoutCard';
+import Card from '../../../components/Card';
 import { useIsFocused } from '@react-navigation/native';
 import { Plan } from '../../../types';
 import { translate } from '../../../services/translation';
@@ -21,13 +21,13 @@ const HomeTab = ({ navigation }: TabProps<TabScreens.HOME_TAB>) => {
   return (
     <TopContainer>
       <MainContainer>
-        <HeaderText>{translate('home.plans.header')}</HeaderText>
+        <HeaderText>{translate('home.homeTab.plans.header')}</HeaderText>
         {plan ? (
           <></>
         ) : (
-          <WorkoutCard
-            title={translate('home.plans.card.title.no_plans')}
-            subtitle={translate('home.plans.card.subtitle.no_plans')}
+          <Card
+            title={translate('home.homeTab.plans.card.title.no_plans')}
+            subtitle={translate('home.homeTab.plans.card.subtitle.no_plans')}
             icon="plus"
             onPress={() => navigation.navigate(StackScreens.ADD_PLAN, {})}
           />

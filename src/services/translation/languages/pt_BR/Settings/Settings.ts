@@ -1,3 +1,5 @@
+import { ThemeName, Units } from '../../../../../types';
+
 export default {
   general: {
     header: 'Geral',
@@ -18,6 +20,17 @@ export default {
       dialog: {
         title: 'Selecione seu sistema de unidades:',
       },
+    },
+  },
+  preferences: {
+    theme: {
+      [ThemeName.LIGHT]: 'Claro',
+      [ThemeName.DARK]: 'Escuro',
+      [ThemeName.AUTO]: 'Automático (Sistema)',
+    },
+    units: {
+      [Units.IMPERIAL]: 'Imperial',
+      [Units.METRIC]: 'Métrico',
     },
   },
 };

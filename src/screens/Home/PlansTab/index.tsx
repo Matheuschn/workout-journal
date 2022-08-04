@@ -21,11 +21,15 @@ const PlansTab = ({ navigation }: TabProps<TabScreens.PLANS_TAB>) => {
   return (
     <TopContainer>
       <MainContainer>
-        <HeaderText>{translate('plans.custom_plans.header')}</HeaderText>
+        <HeaderText>
+          {translate('home.plansTab.custom_plans.header')}
+        </HeaderText>
         {plans.length ? (
           <></>
         ) : (
-          <HelperText>{translate('plans.custom_plans.no_plans')}</HelperText>
+          <HelperText>
+            {translate('home.plansTab.custom_plans.no_plans')}
+          </HelperText>
         )}
       </MainContainer>
       <PlusButton

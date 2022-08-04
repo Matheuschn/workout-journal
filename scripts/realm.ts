@@ -37,6 +37,9 @@ const createRealm = async () => {
           .replace(/[ /]/g, '_')
           .replace(/[^a-z0-9_]/g, '')
           .replace(/(_)\1{1,}/g, '_'),
+        id: new Realm.BSON.UUID(),
+        sets: [],
+        notes: '',
       }),
     ),
   );

@@ -51,13 +51,15 @@ const Settings = ({}: Props<StackParameters, StackScreens.SETTINGS>) => {
           />
           <Setting
             title={translate('settings.general.theme.title')}
-            subtitle={translate(`preferences.theme.${preferences.theme}`)}
+            subtitle={translate(
+              `settings.preferences.theme.${preferences.theme}`,
+            )}
             onPress={() =>
               NativeDialog.showItemsDialog({
                 title: translate('settings.general.theme.dialog.title'),
                 items: Object.values(ThemeName).map((theme) => ({
                   id: theme,
-                  title: translate(`preferences.theme.${theme}`),
+                  title: translate(`settings.preferences.theme.${theme}`),
                 })),
                 onItemSelect: (id: any) => update('theme', id),
               })
@@ -65,13 +67,15 @@ const Settings = ({}: Props<StackParameters, StackScreens.SETTINGS>) => {
           />
           <Setting
             title={translate('settings.general.units.title')}
-            subtitle={translate(`preferences.units.${preferences.units}`)}
+            subtitle={translate(
+              `settings.preferences.units.${preferences.units}`,
+            )}
             onPress={() =>
               NativeDialog.showItemsDialog({
                 title: translate('settings.general.units.dialog.title'),
                 items: Object.values(Units).map((unit) => ({
                   id: unit,
-                  title: translate(`preferences.units.${unit}`),
+                  title: translate(`settings.preferences.units.${unit}`),
                 })),
                 onItemSelect: (id: any) => update('units', id),
               })

@@ -16,8 +16,7 @@ export const MainButton = styled(ButtonWithFeedback)`
 `;
 
 export const IconContainer = styled.View`
-  height: 100%;
-  width: 20%;
+  padding-left: 5%;
   justify-content: center;
   align-items: center;
 `;
@@ -30,6 +29,7 @@ export const InfoContainer = styled.View`
   flex: 1;
   justify-content: space-evenly;
   margin-vertical: 5%;
+  padding-horizontal: 5%;
 `;
 
 export const TitleText = styled.Text`
@@ -40,4 +40,12 @@ export const TitleText = styled.Text`
 export const SubtitleText = styled.Text`
   color: ${({ theme }) => theme.primary};
   font-size: 14px;
+`;
+
+export const OptionsButton = styled.TouchableOpacity`
+  height: 100%;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
 `;

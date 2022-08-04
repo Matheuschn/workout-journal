@@ -3,6 +3,7 @@ import { ObjectSchema } from 'realm';
 export const ExerciseSchema: ObjectSchema = {
   name: 'Exercise',
   properties: {
+    id: 'uuid',
     name: 'string',
     normalized_name: 'string',
     primaryMuscles: 'string[]',
@@ -13,6 +14,8 @@ export const ExerciseSchema: ObjectSchema = {
     equipment: 'string?',
     category: 'string?',
     instructions: 'string[]',
+    sets: 'Set[]',
+    notes: 'string?',
   },
-  primaryKey: 'normalized_name',
+  primaryKey: 'id',
 };

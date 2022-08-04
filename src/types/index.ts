@@ -64,7 +64,16 @@ export enum Category {
   assisted_bodyweight = 'assisted bodyweight',
 }
 
+export interface Set {
+  id: Realm.BSON.UUID;
+  minimum_reps?: number;
+  maximum_reps?: number;
+  rest_time?: number;
+  weight?: number;
+}
+
 export interface Exercise {
+  id: Realm.BSON.UUID;
   name: string;
   normalized_name: string;
   primaryMuscles: Muscle[];
@@ -75,18 +84,21 @@ export interface Exercise {
   equipment: Equipment | null;
   category: Category | null;
   instructions: string[];
+  sets: Set[];
+  notes?: string;
 }
 
 export interface Plan {
+  id: Realm.BSON.UUID;
   name: string;
-  normalized_name: string;
   workouts: Workout[];
   active: boolean;
+  description?: string;
 }
 
 export interface Workout {
+  id: Realm.BSON.UUID;
   name: string;
-  normalized_name: string;
   exercises: Exercise[];
 }
 

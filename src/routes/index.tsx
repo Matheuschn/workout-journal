@@ -11,7 +11,11 @@ import { Database } from '../services/database';
 import { Preferences, ThemeName } from '../types';
 import { setLocale, translate } from '../services/translation';
 import { PreferencesSchema } from '../services/database/schemas/preferences';
-import AddPlan from '../screens/AddPlan';
+import AddPlan from '../screens/Plan/AddPlan';
+import EditWorkout from '../screens/Workout/EditWorkout';
+import AddExercise from '../screens/Exercise/AddExercise';
+import EditExercise from '../screens/Exercise/EditExercise';
+import EditSet from '../screens/Set/EditSet';
 
 const Stack = createStackNavigator<StackParameters>();
 const { useObject } = Database.context;
@@ -54,6 +58,34 @@ const Routes = () => {
             component={AddPlan}
             options={{
               title: translate(`screens.${StackScreens.ADD_PLAN}`),
+            }}
+          />
+          <Stack.Screen
+            name={StackScreens.EDIT_WORKOUT}
+            component={EditWorkout}
+            options={{
+              title: translate(`screens.${StackScreens.EDIT_WORKOUT}`),
+            }}
+          />
+          <Stack.Screen
+            name={StackScreens.ADD_EXERCISE}
+            component={AddExercise}
+            options={{
+              title: translate(`screens.${StackScreens.ADD_EXERCISE}`),
+            }}
+          />
+          <Stack.Screen
+            name={StackScreens.EDIT_EXERCISE}
+            component={EditExercise}
+            options={{
+              title: translate(`screens.${StackScreens.EDIT_EXERCISE}`),
+            }}
+          />
+          <Stack.Screen
+            name={StackScreens.EDIT_SET}
+            component={EditSet}
+            options={{
+              title: translate(`screens.${StackScreens.EDIT_SET}`),
             }}
           />
         </Stack.Navigator>
